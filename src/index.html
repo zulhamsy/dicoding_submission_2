@@ -17,7 +17,7 @@
 	<main class="grid gap-10">
 		<!-- Section - Add New Book -->
 		<section>
-			<h2 class="font-semibold text-slate-400 mb-3">Tambah Buku Baru</h2>
+			<h2 class="font-semibold text-slate-400/80 mb-3 text-sm">Tambah Buku Baru</h2>
 			<!-- Judul -->
 			<label for="judul" class="inline-block mb-1 font-medium text-slate-500">Judul</label>
 			<input type="text" name="judul" id="judul"
@@ -30,6 +30,20 @@
 			<label for="tahun" class="inline-block mb-1 font-medium text-slate-500">Tahun</label>
 			<input type="number" name="tahun" id="tahun"
 				class="block py-2 px-3 mb-4 border border-slate-500 w-full rounded outline-none focus:border-violet-600 focus:ring-1 focus:ring-violet-500 font-semibold focus:font-normal bg-white/70 focus:bg-white">
+			<!-- Checkbox -->
+			<div class="flex items-center gap-2 mb-8">
+				<input type="checkbox" name="done" id="done" class="accent-violet-600">
+				<label for="done" class="flex-1 font-medium text-slate-500">Sudah dibaca</label>
+			</div>
+			<!-- Button -->
+			<button
+				class="flex justify-center items-center gap-2 py-3 w-full bg-violet-600 font-semibold rounded text-white hover:bg-violet-500 shadow shadow-violet-800/25"><svg
+					xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-violet-200" viewBox="0 0 20 20" fill="currentColor">
+					<path fill-rule="evenodd"
+						d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+						clip-rule="evenodd" />
+				</svg><span>Tambah
+					Buku</span></button>
 		</section>
 	</main>
 </body>
