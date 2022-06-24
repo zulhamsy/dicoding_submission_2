@@ -12,7 +12,7 @@ if (Storage !== null) {
   }
   storage = JSON.parse(localStorage.getItem(STORAGE_KEY));
   // Render UI
-  renderUI();
+  renderUI(storage);
 } else {
   alert(
     "Your browser doesn't support localStorage, please change your browser",
@@ -34,24 +34,18 @@ function clearField() {
   IS_DONE.checked = false;
 }
 
-function renderUI() {
-  // Check storage first
-  if (!storage) {
-    storage = JSON.parse(localStorage.getItem(STORAGE_KEY));
+function renderUI(storage) {
+  if (storage.length) {
+    // Render UI
+    const belumContainer = document.getElementById("belum-card-container");
+    belumContainer.innerHTML = "";
+    storage.forEach((book) => {
+      if (!book.isComplete) {
+        const card = addToBelumDibaca(book);
+        belumContainer.appendChild(card);
+      }
+    });
   }
-  // Check if storage have any item
-  if (!storage.length) {
-    return;
-  }
-  // Render UI
-  const belumContainer = document.getElementById("belum-card-container");
-  belumContainer.innerHTML = "";
-  storage.forEach((book) => {
-    if (!book.isComplete) {
-      const card = addToBelumDibaca(book);
-      belumContainer.appendChild(card);
-    }
-  });
 }
 
 SUBMIT.addEventListener("click", function (e) {
@@ -72,7 +66,7 @@ SUBMIT.addEventListener("click", function (e) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
     clearField();
     // Render UI
-    renderUI();
+    renderUI(storage);
   } else {
     alert("Field Judul, Penulis dan Tahun harus diisi");
   }
