@@ -65,6 +65,7 @@ SUBMIT.addEventListener("click", function (e) {
     isComplete: IS_DONE.checked,
   };
   if (inputData.title != "" && inputData.year != "" && inputData.author != "") {
+    const storage = JSON.parse(localStorage.getItem(STORAGE_KEY));
     // Input to LS
     storage.push(inputData);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
