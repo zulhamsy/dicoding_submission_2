@@ -87,3 +87,18 @@ function handleChange(e) {
 
 sectionBelum.addEventListener("click", handleChange);
 sectionSudah.addEventListener("click", handleChange);
+
+// Search books
+const searchField = document.getElementById("search");
+const searchBtn = document.getElementById("search-btn");
+
+searchBtn.addEventListener("click", function (e) {
+  if (searchField.value != "") {
+    const storage = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const pattern = new RegExp(searchField.value, "i");
+    const result = storage.filter((item) => {
+      return pattern.test(item.title);
+    });
+    console.log(result);
+  }
+});
