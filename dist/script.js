@@ -56,16 +56,12 @@ function renderUI(storage) {
 SUBMIT.addEventListener("click", function (e) {
   let inputData = {
     id: +new Date(),
-    judul: JUDUL.value,
-    penulis: PENULIS.value,
-    tahun: TAHUN.value,
+    title: JUDUL.value,
+    author: PENULIS.value,
+    year: +TAHUN.value,
     isComplete: IS_DONE.checked,
   };
-  if (
-    inputData.judul != "" &&
-    inputData.tahun != "" &&
-    inputData.penulis != ""
-  ) {
+  if (inputData.title != "" && inputData.year != "" && inputData.author != "") {
     // Input to LS
     storage.push(inputData);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
@@ -77,6 +73,8 @@ SUBMIT.addEventListener("click", function (e) {
   }
 });
 
+// Ubah sudah-belum dibaca
+
 // Belum Card
 function addToBelumDibaca(data) {
   const result = document.createElement("div");
@@ -87,11 +85,11 @@ function addToBelumDibaca(data) {
   <!-- Book Detail -->
     <div>
       <!-- Book Title -->
-      <p class="font-semibold">${data.judul}</p>
+      <p class="font-semibold">${data.title}</p>
       <!-- Author -->
-      <p class="text-sm text-slate-600 font-medium">${data.penulis}</p>
+      <p class="text-sm text-slate-600 font-medium">${data.author}</p>
       <!-- Year -->
-      <p class="text-sm text-slate-500">${data.tahun}</p>
+      <p class="text-sm text-slate-500">${data.year}</p>
     </div>
     <!-- Book Action -->
     <div class="flex gap-3">
@@ -124,11 +122,11 @@ function addToSudahDibaca(data) {
   <!-- Book Detail -->
   <div>
     <!-- Book Title -->
-    <p class="font-semibold">${data.judul}</p>
+    <p class="font-semibold">${data.title}</p>
     <!-- Author -->
-    <p class="text-sm text-slate-600 font-medium">${data.penulis}</p>
+    <p class="text-sm text-slate-600 font-medium">${data.author}</p>
     <!-- Year -->
-    <p class="text-sm text-slate-500">${data.tahun}</p>
+    <p class="text-sm text-slate-500">${data.year}</p>
   </div>
   <!-- Book Action -->
   <div class="flex gap-3">
