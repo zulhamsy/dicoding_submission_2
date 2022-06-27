@@ -35,10 +35,10 @@ function clearField() {
 }
 
 function renderUI(storage) {
+  const belumContainer = document.getElementById("belum-card-container");
+  const sudahContainer = document.getElementById("sudah-card-container");
   if (storage.length) {
     // Render UI
-    const belumContainer = document.getElementById("belum-card-container");
-    const sudahContainer = document.getElementById("sudah-card-container");
     belumContainer.innerHTML = "";
     sudahContainer.innerHTML = "";
     storage.forEach((book) => {
@@ -50,6 +50,9 @@ function renderUI(storage) {
         sudahContainer.appendChild(card);
       }
     });
+  } else {
+    belumContainer.innerHTML = "";
+    sudahContainer.innerHTML = "";
   }
 }
 
@@ -89,6 +92,15 @@ function handleChange(e) {
     storage[matchIndex].isComplete = !storage[matchIndex].isComplete;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
     renderUI(storage);
+  } else if (role == "action-delete") {
+    const storage = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const matchIndex = storage.findIndex((item) => {
+      return item.id == id;
+    });
+
+    storage.splice(matchIndex, 1);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
+    renderUI(storage);
   }
 }
 
@@ -114,7 +126,7 @@ function addToBelumDibaca(data) {
     <!-- Book Action -->
     <div class="flex gap-3">
       <!-- Delete -->
-      <button class="p-2 group" title="Hapus buku"><svg xmlns="http://www.w3.org/2000/svg"
+      <button data-role="action-delete" data-id="${data.id}" class="p-2 group" title="Hapus buku"><svg data-role="action-delete" data-id="${data.id}" xmlns="http://www.w3.org/2000/svg"
           class="h-5 w-5 fill-slate-300 group-hover:fill-red-600" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd"
             d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
@@ -151,7 +163,7 @@ function addToSudahDibaca(data) {
   <!-- Book Action -->
   <div class="flex gap-3">
     <!-- Delete -->
-    <button class="p-2 group" title="Hapus buku"><svg xmlns="http://www.w3.org/2000/svg"
+    <button data-role="action-delete" data-id="${data.id}" class="p-2 group" title="Hapus buku"><svg data-role="action-delete" data-id="${data.id}" xmlns="http://www.w3.org/2000/svg"
         class="h-5 w-5 fill-slate-300 group-hover:fill-red-600" viewBox="0 0 20 20" fill="currentColor">
         <path fill-rule="evenodd"
           d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
