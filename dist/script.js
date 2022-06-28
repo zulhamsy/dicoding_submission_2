@@ -110,8 +110,10 @@ searchBtn.addEventListener("click", function (e) {
         searchContainer.appendChild(card);
       });
     } else {
-      searchContainer.innerHTML =
-        "Tidak ada hasil ditemukan untuk " + searchField.value;
+      searchContainer.innerHTML = `
+      <p class="text-center mt-7 text-slate-500">Tidak ditemukan buku dengan keyword "<span
+      class="font-semibold">${searchField.value}</span>"</p>
+      `;
     }
   } else {
     searchContainer.innerHTML = "";
