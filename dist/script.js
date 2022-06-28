@@ -51,12 +51,29 @@ SUBMIT.addEventListener("click", function (e) {
     storage.push(inputData);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(storage));
     clearField();
+    // set notif
+    setNotif(inputData.title);
     // Render UI
     renderUI(storage);
   } else {
     alert("Field Judul, Penulis dan Tahun harus diisi");
   }
 });
+
+function setNotif(title) {
+  const notifContainer = document.getElementById("notif");
+  const message = `
+    <p class="text-emerald-600">Buku <span class="font-semibold">${title}</span> berhasil ditambahkan</p>
+  `;
+  notifContainer.innerHTML = message;
+  // Set to show
+  notifContainer.classList.toggle("hidden");
+  // Set to hidden after 1200ms
+  const timer = setTimeout(function () {
+    notifContainer.classList.toggle("hidden");
+    clearTimeout(timer);
+  }, 1200);
+}
 
 // Ubah sudah-belum dibaca dan delete
 const sectionBelum = document.getElementById("belum-dibaca");
